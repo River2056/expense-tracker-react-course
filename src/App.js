@@ -5,7 +5,21 @@ import Expenses from "./components/Expenses/Expenses";
 import expenses from "./data";
 
 const App = () => {
-  const [initialExpense, setExpenses] = useState(expenses);
+  const filteredYear = [...new Set(expenses.map((e) => e.date.getFullYear()))];
+  filteredYear.sort((a, b) => b - a);
+  const [selectedYear, setSelectedYear] = useState(filteredYear[0]);
+  const filterExpenses = expenses.filter(
+    (exp) => exp.date.getFullYear() === parseInt(selectedYear)
+  );
+
+  const onYearChange = (year) => {
+    setSelectedYear(year);
+    const filterExp = expenses.filter(
+      (exp) => exp.date.getFullYear() === parseInt(year)
+    );
+    setExpenses(filterExp);
+  };
+
   const saveExpenseHandler = (expenseData) => {
     const newExpenseData = {
       ...expenseData,
@@ -20,7 +34,12 @@ const App = () => {
   return (
     <div>
       <NewExpense onAddExpense={saveExpenseHandler} />
-      <Expenses items={initialExpense} />
+      <Expenses
+        opts={filteredYear}
+        onYearChange={onYearChange}
+        selectedYear={selectedYear}
+        items={filterExpenses}
+      />
     </div>
   );
 };

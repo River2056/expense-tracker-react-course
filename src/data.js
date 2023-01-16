@@ -31,15 +31,27 @@ const expenses = [
   },
   {
     id: "e6",
-    date: new Date(2022, 10, 6),
+    date: new Date(2021, 10, 6),
     title: "investments",
     amount: 15000,
   },
   {
     id: "e7",
-    date: new Date(2022, 10, 17),
+    date: new Date(2020, 10, 17),
     title: "test1",
     amount: 15000,
+  },
+  {
+    id: "e8",
+    date: new Date(2023, 0, 16),
+    title: "book",
+    amount: 200,
+  },
+  {
+    id: "e9",
+    date: new Date(2023, 0, 27),
+    title: "test123",
+    amount: 200,
   },
 ];
 
