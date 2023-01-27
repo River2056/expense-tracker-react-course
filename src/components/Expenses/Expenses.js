@@ -1,4 +1,5 @@
 import Card from "../UI/Card";
+import ExpensesList from "./ExpensesList";
 import ExpenseItem from "./ExpenseItem";
 import ExpensesFilter from "./ExpensesFilter";
 import "./Expenses.css";
@@ -6,16 +7,13 @@ import "./Expenses.css";
 const Expenses = ({ opts, onYearChange, selectedYear, items }) => {
   return (
     <Card className="expenses">
-      <ExpensesFilter opts={opts} selected={selectedYear} onYearChange={onYearChange} />
-      {items.map((exp) => (
-        <ExpenseItem
-          key={exp.id}
-          id={exp.id}
-          date={exp.date}
-          title={exp.title}
-          amount={exp.amount}
-        />
-      ))}
+      <ExpensesFilter
+        opts={opts}
+        selected={selectedYear}
+        onYearChange={onYearChange}
+      />
+      
+      <ExpensesList items={items} />
     </Card>
   );
 };

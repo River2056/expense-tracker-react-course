@@ -5,12 +5,14 @@ import Expenses from "./components/Expenses/Expenses";
 import expenses from "./data";
 
 const App = () => {
-  const filteredYear = [...new Set(expenses.map((e) => e.date.getFullYear()))];
+  let filteredYear = [...new Set(expenses.map((e) => e.date.getFullYear()))];
   filteredYear.sort((a, b) => b - a);
-  const [selectedYear, setSelectedYear] = useState(filteredYear[0]);
+  filteredYear = [filteredYear[0] + 1, ...filteredYear]
+  const [selectedYear, setSelectedYear] = useState(filteredYear[1]);
   const filterExpenses = expenses.filter(
     (exp) => exp.date.getFullYear() === parseInt(selectedYear)
   );
+  const [initialExpenses, setExpenses] = useState(filterExpenses);
 
   const onYearChange = (year) => {
     setSelectedYear(year);
